@@ -1,5 +1,4 @@
 resource "digitalocean_droplet" "control_plane" {
-  //count    = 1
   image    = "ubuntu-22-04-x64"
   name     = "control-plane"
   region   = var.region
