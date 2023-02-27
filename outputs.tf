@@ -1,4 +1,3 @@
-/*
 output "ssh_fingerprint" {
   value = digitalocean_ssh_key.ssh_key.fingerprint
 }
@@ -35,13 +34,10 @@ output "worker_node_ip_private" {
   value = digitalocean_droplet.worker_node[*].ipv4_address_private
 }
 
-*/
 output "control_plane_ip_public" {
   value = digitalocean_droplet.control_plane[*].ipv4_address
 }
 
-/*
 output "worker_node_ip_public" {
   value = digitalocean_droplet.worker_node[*].ipv4_address
 }
-*/
