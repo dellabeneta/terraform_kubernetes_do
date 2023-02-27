@@ -1,6 +1,6 @@
 resource "digitalocean_vpc" "vpc" {
-  name        = "kubernetes"
+  name        = "lab-k8s"
   region      = var.region
-  ip_range    = "10.0.0.0/24"
-  description = "Rede Privada comunicação interna do Cluster K8S"
+  ip_range    = "192.168.1.0/24"
+  description = "Rede Privada do Cluster K8S"
 }

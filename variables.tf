@@ -1,7 +1,7 @@
 variable "do_token" {}
 
 variable "region" {
-  default = "syd1"
+  default = "nyc1"
 }
 
 variable "droplet_size" {
