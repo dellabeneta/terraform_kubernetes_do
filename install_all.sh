@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 120
+sleep 60
 
 # INSTALACAO MODULOS DO KERNEL
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf overlay br_netfilter
@@ -8,7 +8,7 @@ EOF
 sudo modprobe overlay
 sudo modprobe br_netfilter
 
-# CONFIGURACAO DOS PARAMATROS DO SYSCTL SE MANTEM APOS REBOOT
+# CONFIGURACAO DOS PARAMATROS DO SYSCTL
 cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf 
 net.bridge.bridge-nf-call-iptables = 1
 net.ipv4.ip_forward = 1
