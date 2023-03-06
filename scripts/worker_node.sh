@@ -54,6 +54,6 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 
 # JOIN DO WORKER NODE AO CONTROL PLANE
-kubeadm join 159.223.123.99:6443 --token 4qefmj.lj9hx9atef5a9xnj --discovery-token-ca-cert-hash sha256:7f72c6d435aba7d320661741df4c1d3b8830414057e0c13d0ba1fa84ef4e4306
+kubeadm join CONTROL_PLANE_SERVER_IP:PORT --token AQUI_O_TOKEN --discovery-token-ca-cert-hash sha256:AQUI_O_SHA256_GERADO_JUNTO_COM_O_TOKEN
 
 
