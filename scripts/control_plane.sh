@@ -8,7 +8,7 @@ EOF
 sudo modprobe overlay
 sudo modprobe br_netfilter
 
-# CONFIGURACAO DOS PARAMATROS DO SYSCTL
+# CONFIGURACAO DOS PARAMATROS DO SYSCTL SE MANTEM APOS REBOOT
 cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf 
 net.bridge.bridge-nf-call-iptables = 1
 net.ipv4.ip_forward = 1
@@ -46,3 +46,24 @@ sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://pack
 echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 sudo apt update && sudo apt install kubelet kubeadm kubectl -y
 sudo apt-mark hold kubelet kubeadm kubectl
+
+
+
+### ETAPA EXCLUSIVA PARA O CONTROLE PLANE
+
+
+
+# INICIALIZANDO O CLUSTER
+kubeadmin init
+
+# CONFIGURANDO O KUBECTL COM AS CREDENCIAIS
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# INSTALANDO O CNI PARA COMUNICACAO E REDE
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+# CONFIGURANDO AUTOCOMPLETE PARA O USO DO KUBECTL
+source <(kubectl completion bash) # configuração de autocomplete no bash do shell atual, o pacote bash-completion precisa ter sido instalado primeiro.
+echo "source <(kubectl completion bash)" >> ~/.bashrc # para adicionar o autocomplete permanentemente no seu shell bash.
