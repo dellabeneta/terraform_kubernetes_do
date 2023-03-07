@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sleep 60
+sleep 120
 
 # INSTALACAO MODULOS DO KERNEL
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf overlay br_netfilter
